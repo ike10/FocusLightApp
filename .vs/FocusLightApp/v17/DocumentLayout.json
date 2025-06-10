@@ -1,0 +1,101 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\HP\\Desktop\\Projects\\FocusLightApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{32D791ED-390B-1B46-DBED-BB23931380A9}|FocusLightApp.csproj|c:\\users\\hp\\desktop\\projects\\focuslightapp\\platforms\\windows\\app.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{32D791ED-390B-1B46-DBED-BB23931380A9}|FocusLightApp.csproj|solutionrelative:platforms\\windows\\app.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32D791ED-390B-1B46-DBED-BB23931380A9}|FocusLightApp.csproj|c:\\users\\hp\\desktop\\projects\\focuslightapp\\platforms\\windows\\package.appxmanifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{32D791ED-390B-1B46-DBED-BB23931380A9}|FocusLightApp.csproj|solutionrelative:platforms\\windows\\package.appxmanifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32D791ED-390B-1B46-DBED-BB23931380A9}|FocusLightApp.csproj|c:\\users\\hp\\desktop\\projects\\focuslightapp\\platforms\\windows\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{32D791ED-390B-1B46-DBED-BB23931380A9}|FocusLightApp.csproj|solutionrelative:platforms\\windows\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32D791ED-390B-1B46-DBED-BB23931380A9}|FocusLightApp.csproj|c:\\users\\hp\\desktop\\projects\\focuslightapp\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{32D791ED-390B-1B46-DBED-BB23931380A9}|FocusLightApp.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32D791ED-390B-1B46-DBED-BB23931380A9}|FocusLightApp.csproj|c:\\users\\hp\\desktop\\projects\\focuslightapp\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32D791ED-390B-1B46-DBED-BB23931380A9}|FocusLightApp.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Projects\\FocusLightApp\\Platforms\\Windows\\App.xaml",
+              "RelativeDocumentMoniker": "Platforms\\Windows\\App.xaml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Projects\\FocusLightApp\\Platforms\\Windows\\App.xaml",
+              "RelativeToolTip": "Platforms\\Windows\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-10T17:52:28.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Package.appxmanifest",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Projects\\FocusLightApp\\Platforms\\Windows\\Package.appxmanifest",
+              "RelativeDocumentMoniker": "Platforms\\Windows\\Package.appxmanifest",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Projects\\FocusLightApp\\Platforms\\Windows\\Package.appxmanifest",
+              "RelativeToolTip": "Platforms\\Windows\\Package.appxmanifest",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001793|",
+              "WhenOpened": "2025-06-10T17:52:24.818Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "app.manifest",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Projects\\FocusLightApp\\Platforms\\Windows\\app.manifest",
+              "RelativeDocumentMoniker": "Platforms\\Windows\\app.manifest",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Projects\\FocusLightApp\\Platforms\\Windows\\app.manifest",
+              "RelativeToolTip": "Platforms\\Windows\\app.manifest",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001203|",
+              "WhenOpened": "2025-06-10T17:52:17.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "readme.md",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Projects\\FocusLightApp\\readme.md",
+              "RelativeDocumentMoniker": "readme.md",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Projects\\FocusLightApp\\readme.md",
+              "RelativeToolTip": "readme.md",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-06-10T17:51:42.793Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Projects\\FocusLightApp\\App.xaml.cs",
+              "RelativeDocumentMoniker": "App.xaml.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Projects\\FocusLightApp\\App.xaml.cs",
+              "RelativeToolTip": "App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-10T17:51:02.863Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

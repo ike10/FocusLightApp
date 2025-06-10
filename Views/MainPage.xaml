@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="FocusLightApp.Views.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:FocusLightApp.Converters"
+             xmlns:models="clr-namespace:FocusLightApp.Models"
+             xmlns:viewmodels="clr-namespace:FocusLightApp.ViewModels"
+             Title="EEG Focus Light"
+             BackgroundColor="#1a1a1a">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:FocusToColorConverter x:Key="FocusToColorConverter" />
+            <converters:FocusToGlowConverter x:Key="FocusToGlowConverter" />
+            <converters:FocusToStatusConverter x:Key="FocusToStatusConverter" />
+            <converters:SimulationStateToTextConverter x:Key="SimulationStateToTextConverter" />
+            <converters:PercentageConverter x:Key="PercentageConverter" />
+            <converters:CountConverter x:Key="CountConverter" />
+            <converters:BoolToOpacityConverter x:Key="BoolToOpacityConverter" />
+            <converters:TimeConverter x:Key="TimeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid Padding="20" RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <StackLayout Grid.Row="0" Spacing="10">
+                <Label Text="🧠 EEG Focus Detection"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="White" />
+                
+                <Label Text="{Binding ConnectionStatus}"
+                       FontSize="16"
+                       HorizontalOptions="Center"
+                       TextColor="#4CAF50" />
+            </StackLayout>
+
+            <!-- Virtual Light Bulb -->
+            <StackLayout Grid.Row="1" Spacing="15" HorizontalOptions="Center">
+                
+                <!-- Light Bulb Visual -->
+                <Frame BackgroundColor="{Binding IsFocused, Converter={StaticResource FocusToColorConverter}}"
+                       WidthRequest="120"
+                       HeightRequest="120"
+                       CornerRadius="60"
+                       HasShadow="True">
+                    <Frame.Shadow>
+                        <Shadow Brush="{Binding IsFocused, Converter={StaticResource FocusToColorConverter}}"
+                                Radius="{Binding IsFocused, Converter={StaticResource FocusToGlowConverter}}"
+                                Opacity="0.8" />
+                    </Frame.Shadow>
+                    
+                    <Label Text="💡"
+                           FontSize="60"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Frame>
+
+                <!-- Status Text -->
+                <Label Text="{Binding IsFocused, Converter={StaticResource FocusToStatusConverter}}"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="{Binding IsFocused, Converter={StaticResource FocusToColorConverter}}" />
+            </StackLayout>
+
+            <!-- Control Buttons -->
+            <Grid Grid.Row="2" ColumnSpacing="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Text="{Binding IsSimulationRunning, Converter={StaticResource SimulationStateToTextConverter}}"
+                        Command="{Binding ToggleSimulationCommand}"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="8"
+                        Padding="10" />
+
+                <Button Grid.Column="1"
+                        Text="Force Focus"
+                        Command="{Binding InjectFocusedSignalCommand}"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        CornerRadius="8"
+                        Padding="10"
+                        Opacity="{Binding IsSimulationRunning, Converter={StaticResource BoolToOpacityConverter}}" />
+
+                <Button Grid.Column="2"
+                        Text="Force Unfocus"
+                        Command="{Binding InjectUnfocusedSignalCommand}"
+                        BackgroundColor="#FF5722"
+                        TextColor="White"
+                        CornerRadius="8"
+                        Padding="10"
+                        Opacity="{Binding IsSimulationRunning, Converter={StaticResource BoolToOpacityConverter}}" />
+            </Grid>
+
+            <!-- Statistics Dashboard -->
+            <Frame Grid.Row="3" 
+                   BackgroundColor="#2a2a2a"
+                   CornerRadius="12"
+                   Padding="20"
+                   HasShadow="True">
+                
+                <Grid ColumnSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Total Readings -->
+                    <StackLayout Grid.Column="0" Spacing="5">
+                        <Label Text="Total Readings"
+                               FontSize="14"
+                               TextColor="#B0B0B0"
+                               HorizontalOptions="Center" />
+                        <Label Text="{Binding TotalReadings, Converter={StaticResource CountConverter}}"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+
+                    <!-- Focus Percentage -->
+                    <StackLayout Grid.Column="1" Spacing="5">
+                        <Label Text="Focus Rate"
+                               FontSize="14"
+                               TextColor="#B0B0B0"
+                               HorizontalOptions="Center" />
+                        <Label Text="{Binding FocusPercentage, Converter={StaticResource PercentageConverter}}"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#4CAF50"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+
+                    <!-- Last Signal Time -->
+                    <StackLayout Grid.Column="2" Spacing="5">
+                        <Label Text="Last Signal"
+                               FontSize="14"
+                               TextColor="#B0B0B0"
+                               HorizontalOptions="Center" />
+                        <Label Text="{Binding LastSignalTimeText}"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <!-- Signal History -->
+            <Frame Grid.Row="4" 
+                   BackgroundColor="#2a2a2a"
+                   CornerRadius="12"
+                   Padding="20"
+                   HasShadow="True">
+                
+                <StackLayout Spacing="15">
+                    <!-- History Header -->
+                    <Grid>
+                        <Label Text="📊 Signal History"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               VerticalOptions="Center" />
+                        
+                        <Button Text="Clear"
+                                Command="{Binding ClearHistoryCommand}"
+                                BackgroundColor="#FF5722"
+                                TextColor="White"
+                                CornerRadius="6"
+                                Padding="8,4"
+                                FontSize="12"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- History List -->
+                    <CollectionView ItemsSource="{Binding SignalHistory}"
+                                    HeightRequest="300"
+                                    BackgroundColor="Transparent">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:FocusData">
+                                <Grid Padding="10,8" ColumnSpacing="15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Status Indicator -->
+                                    <Ellipse Grid.Column="0"
+                                             Fill="{Binding StatusColor}"
+                                             WidthRequest="12"
+                                             HeightRequest="12"
+                                             VerticalOptions="Center" />
+
+                                    <!-- Status Text -->
+                                    <Label Grid.Column="1"
+                                           Text="{Binding StatusText}"
+                                           FontSize="16"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+
+                                    <!-- Timestamp -->
+                                    <Label Grid.Column="2"
+                                           Text="{Binding FormattedTime}"
+                                           FontSize="14"
+                                           TextColor="#B0B0B0"
+                                           VerticalOptions="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+
+                        <!-- Empty State -->
+                        <CollectionView.EmptyView>
+                            <StackLayout Padding="20" Spacing="10">
+                                <Label Text="📭"
+                                       FontSize="40"
+                                       HorizontalOptions="Center" />
+                                <Label Text="No signals received yet"
+                                       FontSize="16"
+                                       TextColor="#B0B0B0"
+                                       HorizontalOptions="Center" />
+                                <Label Text="Start the simulation to see EEG data"
+                                       FontSize="14"
+                                       TextColor="#808080"
+                                       HorizontalOptions="Center" />
+                            </StackLayout>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>
+                                
+                                <!--you need to come fix this later-->
+                                <!-- fixed but doubts still -->

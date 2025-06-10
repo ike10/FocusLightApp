@@ -1,0 +1,391 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FocusLightApp</name>
+    </assembly>
+    <members>
+        <member name="T:FocusLightApp.App">
+            <summary>
+            Main application class
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.App.#ctor">
+            <summary>
+            Initializes the application
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.App.CreateWindow(Microsoft.Maui.IActivationState)">
+            <summary>
+            Handle application lifecycle events
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.AppShell">
+            <summary>
+            Application shell for navigation
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.AppShell.#ctor">
+            <summary>
+            Initializes the application shell
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.Converters.FocusToColorConverter">
+            <summary>
+            Converts boolean focused state to light bulb color
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.Converters.FocusToGlowConverter">
+            <summary>
+            Converts boolean focused state to glow effect radius
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.Converters.FocusToStatusConverter">
+            <summary>
+            Converts boolean focused state to status text
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.Converters.SimulationStateToTextConverter">
+            <summary>
+            Converts boolean simulation state to button text
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.Converters.PercentageConverter">
+            <summary>
+            Converts double percentage to formatted string
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.Converters.CountConverter">
+            <summary>
+            Converts integer count to formatted string
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.Converters.BoolToOpacityConverter">
+            <summary>
+            Converts boolean to opacity for enable/disable visual feedback
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.Converters.TimeConverter">
+            <summary>
+            Converts DateTime to formatted time string
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.MauiProgram">
+            <summary>
+            MAUI program builder and dependency injection configuration
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.MauiProgram.CreateMauiApp">
+            <summary>
+            Creates the MAUI application
+            </summary>
+            <returns>Configured MauiApp instance</returns>
+        </member>
+        <member name="T:FocusLightApp.Models.FocusData">
+            <summary>
+            Represents a single EEG focus detection reading
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.Models.FocusData.Signal">
+            <summary>
+            The raw signal value (0 = not focused, 1 = focused)
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.Models.FocusData.Timestamp">
+            <summary>
+            Timestamp when the signal was recorded
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.Models.FocusData.IsFocused">
+            <summary>
+            Boolean representation of focus state
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.Models.FocusData.FormattedTime">
+            <summary>
+            Formatted timestamp for display
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.Models.FocusData.StatusText">
+            <summary>
+            Human-readable status text
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.Models.FocusData.StatusColor">
+            <summary>
+            Status color for UI display
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.Models.FocusData.#ctor(System.Int32,System.Nullable{System.DateTime})">
+            <summary>
+            Creates a new FocusData instance
+            </summary>
+            <param name="signal">The signal value (0 or 1)</param>
+            <param name="timestamp">Optional timestamp (defaults to now)</param>
+        </member>
+        <member name="M:FocusLightApp.Models.FocusData.CreateFocused">
+            <summary>
+            Creates a focused signal instance
+            </summary>
+            <returns>FocusData with signal = 1</returns>
+        </member>
+        <member name="M:FocusLightApp.Models.FocusData.CreateUnfocused">
+            <summary>
+            Creates an unfocused signal instance
+            </summary>
+            <returns>FocusData with signal = 0</returns>
+        </member>
+        <member name="T:FocusLightApp.Services.IEEGSimulationService">
+            <summary>
+            Interface for EEG simulation service
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.Services.EEGSimulationService">
+            <summary>
+            Simulates EEG focus detection signals from an EPOC headset
+            </summary>
+        </member>
+        <member name="E:FocusLightApp.Services.EEGSimulationService.FocusDataReceived">
+            <summary>
+            Event fired when new focus data is received
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.Services.EEGSimulationService.IsRunning">
+            <summary>
+            Indicates if the simulation is currently running
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.Services.EEGSimulationService.History">
+            <summary>
+            Collection of historical focus data readings
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.Services.EEGSimulationService.IntervalMs">
+            <summary>
+            Simulation interval in milliseconds (default: 2000ms)
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.Services.EEGSimulationService.FocusProbability">
+            <summary>
+            Probability of generating a focused signal (default: 70%)
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.Services.EEGSimulationService.MaxHistoryItems">
+            <summary>
+            Maximum number of history items to keep (default: 50)
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.Services.EEGSimulationService.StartSimulationAsync">
+            <summary>
+            Starts the EEG simulation
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.Services.EEGSimulationService.StopSimulationAsync">
+            <summary>
+            Stops the EEG simulation
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.Services.EEGSimulationService.InjectFocusSignal(System.Boolean)">
+            <summary>
+            Manually inject a focus signal for testing
+            </summary>
+            <param name="isFocused">True for focused state, false for unfocused</param>
+        </member>
+        <member name="M:FocusLightApp.Services.EEGSimulationService.ClearHistory">
+            <summary>
+            Clears the signal history
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.Services.EEGSimulationService.GenerateSignal(System.Object)">
+            <summary>
+            Timer callback that generates random focus signals
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.Services.EEGSimulationService.ProcessFocusData(FocusLightApp.Models.FocusData)">
+            <summary>
+            Processes new focus data and updates history
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.Services.EEGSimulationService.Dispose">
+            <summary>
+            Disposes of the service resources
+            </summary>
+        </member>
+        <member name="T:FocusLightApp.ViewModels.MainViewModel">
+            <summary>
+            Main view model for the EEG Focus Detection App
+            </summary>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.SignalHistory">
+            <summary>
+            History of signal readings from the service
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.ViewModels.MainViewModel.#ctor(FocusLightApp.Services.IEEGSimulationService)">
+            <summary>
+            Initializes the main view model
+            </summary>
+            <param name="eegService">EEG simulation service</param>
+        </member>
+        <member name="M:FocusLightApp.ViewModels.MainViewModel.OnFocusDataReceived(System.Object,FocusLightApp.Models.FocusData)">
+            <summary>
+            Handles new focus data from the EEG service
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.ViewModels.MainViewModel.UpdateConnectionStatus">
+            <summary>
+            Updates the connection status display
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.ViewModels.MainViewModel.Dispose(System.Boolean)">
+            <summary>
+            Cleanup when view model is disposed
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.ViewModels.MainViewModel.Dispose">
+            <summary>
+            Public dispose method
+            </summary>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.IsFocused">
+            <inheritdoc cref="F:FocusLightApp.ViewModels.MainViewModel._isFocused"/>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.IsSimulationRunning">
+            <inheritdoc cref="F:FocusLightApp.ViewModels.MainViewModel._isSimulationRunning"/>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.ConnectionStatus">
+            <inheritdoc cref="F:FocusLightApp.ViewModels.MainViewModel._connectionStatus"/>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.TotalReadings">
+            <inheritdoc cref="F:FocusLightApp.ViewModels.MainViewModel._totalReadings"/>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.FocusedCount">
+            <inheritdoc cref="F:FocusLightApp.ViewModels.MainViewModel._focusedCount"/>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.FocusPercentage">
+            <inheritdoc cref="F:FocusLightApp.ViewModels.MainViewModel._focusPercentage"/>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.LastSignalTime">
+            <inheritdoc cref="F:FocusLightApp.ViewModels.MainViewModel._lastSignalTime"/>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.LastSignalTimeText">
+            <inheritdoc cref="F:FocusLightApp.ViewModels.MainViewModel._lastSignalTimeText"/>
+        </member>
+        <member name="F:FocusLightApp.ViewModels.MainViewModel.toggleSimulationCommand">
+            <summary>The backing field for <see cref="P:FocusLightApp.ViewModels.MainViewModel.ToggleSimulationCommand"/>.</summary>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.ToggleSimulationCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:FocusLightApp.ViewModels.MainViewModel.ToggleSimulation"/>.</summary>
+        </member>
+        <member name="F:FocusLightApp.ViewModels.MainViewModel.injectFocusedSignalCommand">
+            <summary>The backing field for <see cref="P:FocusLightApp.ViewModels.MainViewModel.InjectFocusedSignalCommand"/>.</summary>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.InjectFocusedSignalCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:FocusLightApp.ViewModels.MainViewModel.InjectFocusedSignal"/>.</summary>
+        </member>
+        <member name="F:FocusLightApp.ViewModels.MainViewModel.injectUnfocusedSignalCommand">
+            <summary>The backing field for <see cref="P:FocusLightApp.ViewModels.MainViewModel.InjectUnfocusedSignalCommand"/>.</summary>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.InjectUnfocusedSignalCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:FocusLightApp.ViewModels.MainViewModel.InjectUnfocusedSignal"/>.</summary>
+        </member>
+        <member name="F:FocusLightApp.ViewModels.MainViewModel.clearHistoryCommand">
+            <summary>The backing field for <see cref="P:FocusLightApp.ViewModels.MainViewModel.ClearHistoryCommand"/>.</summary>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.ClearHistoryCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:FocusLightApp.ViewModels.MainViewModel.ClearHistory"/>.</summary>
+        </member>
+        <member name="F:FocusLightApp.ViewModels.MainViewModel.resetStatisticsCommand">
+            <summary>The backing field for <see cref="P:FocusLightApp.ViewModels.MainViewModel.ResetStatisticsCommand"/>.</summary>
+        </member>
+        <member name="P:FocusLightApp.ViewModels.MainViewModel.ResetStatisticsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:FocusLightApp.ViewModels.MainViewModel.ResetStatistics"/>.</summary>
+        </member>
+        <member name="T:FocusLightApp.Views.MainPage">
+            <summary>
+            Main page for the EEG Focus Detection App
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.Views.MainPage.#ctor(FocusLightApp.ViewModels.MainViewModel)">
+            <summary>
+            Initializes the main page
+            </summary>
+            <param name="viewModel">Main view model instance</param>
+        </member>
+        <member name="M:FocusLightApp.Views.MainPage.OnAppearing">
+            <summary>
+            Handle page appearing - useful for starting background services
+            </summary>
+        </member>
+        <member name="M:FocusLightApp.Views.MainPage.OnDisappearing">
+            <summary>
+            Handle page disappearing - useful for cleanup
+            </summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsFocused">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsFocused" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsSimulationRunning">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsSimulationRunning" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ConnectionStatus">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ConnectionStatus" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TotalReadings">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TotalReadings" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FocusedCount">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FocusedCount" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FocusPercentage">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FocusPercentage" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.LastSignalTime">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "LastSignalTime" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.LastSignalTimeText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "LastSignalTimeText" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsFocused">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsFocused" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsSimulationRunning">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsSimulationRunning" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ConnectionStatus">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ConnectionStatus" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TotalReadings">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TotalReadings" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FocusedCount">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FocusedCount" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FocusPercentage">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FocusPercentage" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.LastSignalTime">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "LastSignalTime" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.LastSignalTimeText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "LastSignalTimeText" generated properties.</summary>
+        </member>
+    </members>
+</doc>
