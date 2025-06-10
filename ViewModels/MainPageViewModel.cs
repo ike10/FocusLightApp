@@ -123,7 +123,8 @@ public partial class MainViewModel : ObservableObject
     }
 
     /// <summary>
-    /// Handles new focus data from the EEG service
+    /// Handles new focus data from the EEG services and updates the UI accordingly
+    /// This method is called on the main thread to ensure UI updates are safe.
     /// </summary>
     private void OnFocusDataReceived(object? sender, FocusData focusData)
     {
